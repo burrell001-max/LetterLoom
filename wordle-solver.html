@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Wordle Solver and Crossword Pattern Helper | WordUnscramblerPro</title><meta name="description" content="Free Wordle solver and pattern finder: enter green, yellow and gray letters and get matching words ranked by how much they narrow the field.">
+<title>Wordle Solver and Crossword Pattern Helper | WordUnscramblerPro</title><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="description" content="Free Wordle solver and pattern finder: enter green, yellow and gray letters and get matching words ranked by how much they narrow the field.">
 <link rel="canonical" href="https://burrell001-max.github.io/WordUnscramblerPro/wordle-solver.html"><meta property="og:type" content="website"><meta property="og:title" content="Wordle Solver and Crossword Pattern Helper"><meta property="og:description" content="Free Wordle solver and pattern finder: enter green, yellow and gray letters and get matching words ranked by how much they narrow the field."><meta property="og:url" content="https://burrell001-max.github.io/WordUnscramblerPro/wordle-solver.html"><meta property="og:site_name" content="WordUnscramblerPro">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23f2b544'/%3E%3Ctext x='32' y='46' font-size='38' font-weight='800' text-anchor='middle' font-family='Arial' fill='%232a1d00'%3EW%3C/text%3E%3C/svg%3E">
 <script>try{var t=localStorage.t;if(t=='d'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')}catch(e){}</script>
@@ -40,4 +40,4 @@ $('#st').textContent=R.length?`${R.length.toLocaleString()} word${R.length>1?'s'
 $('#sug').innerHTML=R.length?`<h2>Best guesses</h2><p class="wl">${S.slice(0,12).map(w=>chip(w)).join(' ')}</p>`+(R.length>12?`<h2>All matches (A–Z)</h2><p class="wl">${R.slice(0,400).map(w=>chip(w)).join(' ')}</p>${R.length>400?'<p class="msg">Showing first 400. Add more letters to narrow it down.</p>':''}`:''):''}
 document.addEventListener('input',e=>{if(e.target.matches('input')){const c=e.target;if(c.classList.contains('g')&&c.value&&c.nextElementSibling)c.nextElementSibling.focus();run()}});
 $('#len').onchange=build;
-words().then(w=>{W=w;build()}).catch(()=>failed('#out'))</script></body></html>
+words().then(w=>{W=w;build()}).catch(()=>failed('#out'))</script><script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))</script></body></html>

@@ -2,7 +2,7 @@ const $=s=>document.querySelector(s),esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;'
 const mk=s=>{const o={};s.split(' ').forEach(g=>{const[l,v]=g.split(':');for(const c of l)o[c]=+v});return o};
 const SC=mk('aeilnorstu:1 dg:2 bcmp:3 fhvwy:4 k:5 jx:8 qz:10'),WF=mk('aeiorst:1 dln:2 ghy:3 bcfmpw:4 kv:5 x:8 jqz:10 u:2');
 let _W,_S,_D;
-async function words(){if(!_W){const r=await fetch('words.txt');if(!r.ok)throw 0;_W=(await r.text()).split('\n').filter(Boolean);_S=new Set(_W)}return _W}
+async function words(){if(!_W){const r=await fetch('words.txt');if(!r.ok)throw 0;_W=(await r.text()).split('\n').filter(Boolean).concat(["qi", "za", "ki", "zo", "fe", "gi", "ok", "ew", "da", "po", "te", "qis", "zas", "kis", "zos", "gis"]);_S=new Set(_W)}return _W}
 const isWord=w=>_S.has(w);
 async function defs(){if(!_D){_D={};try{const r=await fetch('defs.txt');(await r.text()).split('\n').forEach(l=>{const[w,p,g]=l.split('\t');if(w&&g&&!_D[w])_D[w]=[p,g]})}catch(e){}}return _D}
 const pts=(w,t=SC)=>[...w].reduce((a,c)=>a+(t[c]||0),0);

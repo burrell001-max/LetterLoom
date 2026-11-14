@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Scrabble Bingo Finder: 7 and 8-Letter Words | WordUnscramblerPro</title><meta name="description" content="Find every bingo from your Scrabble rack, and see which tile you would need to draw or play through for an even longer word.">
+<title>Scrabble Bingo Finder: 7 and 8-Letter Words | WordUnscramblerPro</title><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="description" content="Find every bingo from your Scrabble rack, and see which tile you would need to draw or play through for an even longer word.">
 <link rel="canonical" href="https://burrell001-max.github.io/WordUnscramblerPro/bingo-finder.html"><meta property="og:type" content="website"><meta property="og:title" content="Scrabble Bingo Finder: 7 and 8-Letter Words"><meta property="og:description" content="Find every bingo from your Scrabble rack, and see which tile you would need to draw or play through for an even longer word."><meta property="og:url" content="https://burrell001-max.github.io/WordUnscramblerPro/bingo-finder.html"><meta property="og:site_name" content="WordUnscramblerPro">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23f2b544'/%3E%3Ctext x='32' y='46' font-size='38' font-weight='800' text-anchor='middle' font-family='Arial' fill='%232a1d00'%3EW%3C/text%3E%3C/svg%3E">
 <script>try{var t=localStorage.t;if(t=='d'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')}catch(e){}</script>
@@ -33,4 +33,4 @@ h+=`<h2>${n==7?'Eight-letter words through a board letter':'Add one more letter 
 h+=ks.length?ks.map(c=>`<h3>${c.toUpperCase()} (${ext[c].length})</h3><p class="wl">${ext[c].slice(0,40).map(w=>chip(w,pts(w))).join(' ')}</p>`).join(''):'<p>No words found.</p>';
 $('#out').className='';$('#out').innerHTML=h}
 words().then(()=>{$('#q').disabled=false;$('#out').innerHTML='<p class="msg">Type your tiles.</p>';$('#q').focus()}).catch(()=>failed('#out'));
-$('#q').addEventListener('input',()=>{if(_W)go()})</script></body></html>
+$('#q').addEventListener('input',()=>{if(_W)go()})</script><script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))</script></body></html>

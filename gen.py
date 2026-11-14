@@ -17,7 +17,8 @@ COUNT=300
 if '--count' in sys.argv:COUNT=int(sys.argv[sys.argv.index('--count')+1]);args=[a for a in args if a!=str(COUNT)]
 DOM=(args[0] if args else 'https://YOURDOMAIN.com').rstrip('/');OUT=args[1] if len(args)>1 else 'site'
 NAME='WordUnscramblerPro';PFX=urlparse(DOM).path.rstrip('/');MIN_WORDS=220
-W=sorted({w.strip() for w in open('enable.txt') if w.strip().isalpha() and 2<=len(w.strip())<=15});S=set(W)
+EX=["qi", "za", "ki", "zo", "fe", "gi", "ok", "ew", "da", "po", "te", "qis", "zas", "kis", "zos", "gis"]
+W=sorted({w.strip() for w in open('enable.txt') if w.strip().isalpha() and 2<=len(w.strip())<=15}|set(EX));S=set(W)
 DF={}
 for l in gzip.decompress(base64.b64decode(open('defs.b64').read())).decode().split('\n'):
     if l:

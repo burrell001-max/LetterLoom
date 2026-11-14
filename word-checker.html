@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Scrabble Word Checker: Is It a Valid Word? | WordUnscramblerPro</title><meta name="description" content="Check if a word is valid, see its Scrabble and Words With Friends points, its definition, anagrams and the letters that can be added to the front or back.">
+<title>Scrabble Word Checker: Is It a Valid Word? | WordUnscramblerPro</title><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="description" content="Check if a word is valid, see its Scrabble and Words With Friends points, its definition, anagrams and the letters that can be added to the front or back.">
 <link rel="canonical" href="https://burrell001-max.github.io/WordUnscramblerPro/word-checker.html"><meta property="og:type" content="website"><meta property="og:title" content="Scrabble Word Checker: Is It a Valid Word?"><meta property="og:description" content="Check if a word is valid, see its Scrabble and Words With Friends points, its definition, anagrams and the letters that can be added to the front or back."><meta property="og:url" content="https://burrell001-max.github.io/WordUnscramblerPro/word-checker.html"><meta property="og:site_name" content="WordUnscramblerPro">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23f2b544'/%3E%3Ctext x='32' y='46' font-size='38' font-weight='800' text-anchor='middle' font-family='Arial' fill='%232a1d00'%3EW%3C/text%3E%3C/svg%3E">
 <script>try{var t=localStorage.t;if(t=='d'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')}catch(e){}</script>
@@ -33,4 +33,4 @@ if(an.length)h+=`<h3>Anagrams</h3><p class="wl">${an.slice(0,50).map(x=>chip(x))
 if(!ok&&w.length<=8)h+=`<p class="msg">Try the <a href="./#${w}">unscrambler</a> to find valid words from these letters.</p>`;
 $('#out').className='';$('#out').innerHTML=h}
 Promise.all([words(),defs()]).then(([,d])=>{D=d;$('#w').disabled=false;$('#out').innerHTML='<p class="msg">Ready.</p>';const h=decodeURIComponent(location.hash.slice(1));if(h){$('#w').value=h;go()}$('#w').focus()}).catch(()=>failed('#out'));
-$('#w').addEventListener('input',()=>{if(_W)go()})</script></body></html>
+$('#w').addEventListener('input',()=>{if(_W)go()})</script><script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))</script></body></html>
