@@ -22,7 +22,7 @@
 <main class="max-w-3xl mx-auto px-4 pb-40">
 <h1 class="text-3xl sm:text-4xl font-extrabold font-extrabold mt-6 leading-tight">Word Unscrambler &amp; Anagram Solver</h1>
 <p class="mt-2" style="color:var(--mut)">Use <b>?</b> or <b>*</b> for blank tiles. Results update as you type.</p>
-<input id="q" class="fld mt-4 !text-3xl sm:!text-4xl font-extrabold tracking-widest !py-4 !px-4 !rounded-xl" style="font-size:1.9rem" maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text" placeholder="LETTERS" aria-label="Your letters" disabled>
+<div class="mt-4" style="position:relative"><input id="q" class="fld !text-3xl sm:!text-4xl font-extrabold tracking-widest !py-4 !px-4 !rounded-xl" style="font-size:1.9rem;padding-right:3.6rem!important" maxlength="20" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text" placeholder="LETTERS" aria-label="Your letters" disabled><button id="cl" type="button" aria-label="Clear letters" title="Clear" hidden style="position:absolute;right:.6rem;top:50%;transform:translateY(-50%);width:2.4rem;height:2.4rem;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--fg);font-size:1.5rem;line-height:1;font-weight:700">&times;</button></div>
 <div id="g" class="flex flex-wrap gap-2 mt-4" role="tablist" aria-label="Game"></div>
 <p id="gi" class="mt-2 text-sm" style="color:var(--mut)"></p>
 <div class="card mt-4 p-3 grid gap-3 sm:grid-cols-4">
@@ -91,8 +91,9 @@ d.g?solve():draw()});
 let raf;['q','a','b','c','u','k'].forEach(i=>$('#'+i).addEventListener('input',()=>{cancelAnimationFrame(raf);S.lim=300;raf=requestAnimationFrame(solve)}));
 $('#q').addEventListener('keydown',e=>{if(e.key=='Enter')e.target.blur()});
 $('#th').onclick=()=>{const d=document.documentElement.classList.toggle('dark');try{localStorage.t=d?'d':'l'}catch(e){}};
+const sync=()=>{$('#cl').hidden=!$('#q').value};$('#q').addEventListener('input',sync);$('#cl').addEventListener('click',()=>{$('#q').value='';sync();S.lim=300;solve();$('#q').focus()});$('#q').addEventListener('keydown',e=>{if(e.key=='Escape'&&$('#q').value){$('#q').value='';sync();S.lim=300;solve()}});
 tabs();
 (async()=>{W=(await(await fetch('words.txt')).text()).split('\n').filter(Boolean).concat(["qi","za","ki","zo","fe","gi","ok","ew","da","po","te","qis","zas","kis","zos","gis"]);(await(await fetch('defs.txt')).text()).split('\n').forEach(l=>{const[w,p,g]=l.split('\t');DF[w]=[p,g]});
-B=Uint8Array.from(atob((await(await fetch('common.b64')).text()).trim()),c=>c.charCodeAt(0));WU=W.concat((await(await fetch('uk.txt')).text()).split('\n'));$('#q').disabled=false;const h=decodeURIComponent(location.hash.slice(1));$('#q').value=h.replace(/[^a-zA-Z?*]/g,'').slice(0,20);$('#q').focus();
+B=Uint8Array.from(atob((await(await fetch('common.b64')).text()).trim()),c=>c.charCodeAt(0));WU=W.concat((await(await fetch('uk.txt')).text()).split('\n'));$('#q').disabled=false;const h=decodeURIComponent(location.hash.slice(1));$('#q').value=h.replace(/[^a-zA-Z?*]/g,'').slice(0,20);$('#q').focus();sync();
 $('#q').value?solve():E('#st','')||($('#st').textContent=`Ready. ${W.length.toLocaleString()} words loaded.`)})();
 </script><script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))</script></body></html>
