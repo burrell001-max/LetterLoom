@@ -1,4 +1,4 @@
-"""WordUnscramblerPro page generator.
+"""LetterLoom page generator.
 
 Usage:  python3 gen.py DOMAIN_URL [OUT_DIR] [--count N]
 
@@ -16,7 +16,7 @@ args=[a for a in sys.argv[1:] if not a.startswith('--')]
 COUNT=300
 if '--count' in sys.argv:COUNT=int(sys.argv[sys.argv.index('--count')+1]);args=[a for a in args if a!=str(COUNT)]
 DOM=(args[0] if args else 'https://YOURDOMAIN.com').rstrip('/');OUT=args[1] if len(args)>1 else 'site'
-NAME='WordUnscramblerPro';PFX=urlparse(DOM).path.rstrip('/');MIN_WORDS=220
+NAME='LetterLoom';PFX=urlparse(DOM).path.rstrip('/');MIN_WORDS=220
 EX=["qi", "za", "ki", "zo", "fe", "gi", "ok", "ew", "da", "po", "te", "qis", "zas", "kis", "zos", "gis"]
 W=sorted({w.strip() for w in open('enable.txt') if w.strip().isalpha() and 2<=len(w.strip())<=15}|set(EX));S=set(W)
 DF={}

@@ -5,9 +5,9 @@ D=os.path.dirname(os.path.abspath(__file__));os.chdir(D)
 B=sys.argv[1] if len(sys.argv)>1 else 'https://burrell001-max.github.io/LetterLoom/'
 B=B if B.endswith('/') else B+'/'
 idx=open('index.html',encoding='utf-8').read()
-prev=open('base.txt').read().strip() if os.path.exists('base.txt') else 'https://burrell001-max.github.io/WordUnscramblerPro/'
+prev=open('base.txt').read().strip() if os.path.exists('base.txt') else 'https://burrell001-max.github.io/LetterLoom/'
 idx=idx.replace(prev,B);open('index.html','w',encoding='utf-8').write(idx);open('base.txt','w').write(B)
-W=open('data/words.txt').read().split('\n');bm=base64.b64decode(open('data/common.b64').read().strip())
+W=open('words.txt').read().split('\n')+['qi','za','ki','zo','fe','gi','ok','ew','da','po','te','qis','zas','kis','zos','gis'];bm=base64.b64decode(open('common.b64').read().strip())
 com={w for i,w in enumerate(W) if bm[i>>3]>>(i&7)&1}
 def mk(s):
     o={}
@@ -46,7 +46,7 @@ for c in L:
     ws=sorted((w for w in com if w[0]==c and 2<=len(w)<=9),key=lambda w:(len(w),w))
     page(f'words-starting-with-{c}.html',f'Words That Start With {c.upper()}',f'{len(ws):,} everyday words that start with {c.upper()}, grouped by length with Scrabble points.',f'Words That Start With {c.upper()}',f'<p>Everyday English words that start with {c.upper()}, from 2 to 9 letters. {stats(ws)}</p>{grp(ws)}{tool}')
 M=[(sum(1<<(ord(x)-97) for x in set(w)),len(w),w) for w in W]
-pop=[w for w in open('data/popular.txt').read().split('\n') if w];seen=set();pw=[]
+pop=[w for w in open('popular.txt').read().split('\n') if w];seen=set();pw=[]
 for w in pop:
     s=''.join(sorted(w))
     if s not in seen:seen.add(s);pw.append(w)

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Word Unscrambler & Anagram Solver – Scrabble Helper | LetterLoom</title><link rel="preload" href="data/words.txt" as="fetch" crossorigin><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Word Unscrambler & Anagram Solver – Scrabble Helper | LetterLoom</title><link rel="preload" href="words.txt" as="fetch" crossorigin><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="description" content="Free word unscrambler and anagram solver. Type your letters, use ? for blank tiles, and instantly see every playable word with Scrabble, Words With Friends and Wordfeud points. No sign-up.">
 <link rel="canonical" href="https://burrell001-max.github.io/LetterLoom/">
 <meta name="robots" content="index,follow,max-image-preview:large">
@@ -92,7 +92,7 @@ let raf;['q','a','b','c','u','k'].forEach(i=>$('#'+i).addEventListener('input',(
 $('#q').addEventListener('keydown',e=>{if(e.key=='Enter')e.target.blur()});
 $('#th').onclick=()=>{const d=document.documentElement.classList.toggle('dark');try{localStorage.t=d?'d':'l'}catch(e){}};
 tabs();
-(async()=>{W=(await(await fetch('data/words.txt')).text()).split('\n');(await(await fetch('data/defs.txt')).text()).split('\n').forEach(l=>{const[w,p,g]=l.split('\t');DF[w]=[p,g]});
-B=Uint8Array.from(atob((await(await fetch('data/common.b64')).text()).trim()),c=>c.charCodeAt(0));WU=W.concat((await(await fetch('data/uk.txt')).text()).split('\n'));$('#q').disabled=false;const h=decodeURIComponent(location.hash.slice(1));$('#q').value=h.replace(/[^a-zA-Z?*]/g,'').slice(0,20);$('#q').focus();
+(async()=>{W=(await(await fetch('words.txt')).text()).split('\n').filter(Boolean).concat(["qi","za","ki","zo","fe","gi","ok","ew","da","po","te","qis","zas","kis","zos","gis"]);(await(await fetch('defs.txt')).text()).split('\n').forEach(l=>{const[w,p,g]=l.split('\t');DF[w]=[p,g]});
+B=Uint8Array.from(atob((await(await fetch('common.b64')).text()).trim()),c=>c.charCodeAt(0));WU=W.concat((await(await fetch('uk.txt')).text()).split('\n'));$('#q').disabled=false;const h=decodeURIComponent(location.hash.slice(1));$('#q').value=h.replace(/[^a-zA-Z?*]/g,'').slice(0,20);$('#q').focus();
 $('#q').value?solve():E('#st','')||($('#st').textContent=`Ready. ${W.length.toLocaleString()} words loaded.`)})();
 </script><script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))</script></body></html>
