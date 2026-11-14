@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://burrell001-max.github.io/LetterLoom/sitemap.xml
