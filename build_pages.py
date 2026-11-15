@@ -19,8 +19,10 @@ SC=mk('aeilnorstu:1 dg:2 bcmp:3 fhvwy:4 k:5 jx:8 qz:10');WF=mk('aeiorst:1 dln:2 
 pt=lambda w,P=SC:sum(P[c] for c in w)
 css=''.join(re.findall(r'<style>.*?</style>',idx,re.S));theme=re.search(r'<script>try\{var t=localStorage.*?</script>',idx,re.S).group(0);foot=re.search(r'<footer.*?</footer>',idx,re.S).group(0)
 out=[];L='abcdefghijklmnopqrstuvwxyz'
+gen=lambda f:f.startswith('unscramble-') or f.startswith('words-starting-with-') or bool(re.match(r'\d-letter-words-(starting-with|ending-in)-',f))
+rb=lambda f:'noindex,follow' if gen(f) else 'index,follow'
 def page(f,title,desc,h1,body):
-    open(f,'w',encoding='utf-8').write(f'<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} | LetterLoom</title><meta name="description" content="{desc}"><link rel="canonical" href="{B}{f}"><meta name="robots" content="index,follow">{theme}{css}</head><body class="min-h-screen"><header class="max-w-3xl mx-auto px-4 pt-4"><a href="index.html" class="flex items-center gap-2 font-extrabold text-lg"><span class="tile w-8 h-8 grid place-items-center">L</span>LetterLoom</a></header><main class="max-w-3xl mx-auto px-4 pb-20 pg"><h1 class="text-3xl font-extrabold mt-6 leading-tight">{h1}</h1>{body}{foot}</main></body></html>');out.append((f,title))
+    open(f,'w',encoding='utf-8').write(f'<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} | LetterLoom</title><meta name="description" content="{desc}"><link rel="canonical" href="{B}{f}"><meta name="robots" content="{rb(f)}">{theme}{css}</head><body class="min-h-screen"><header class="max-w-3xl mx-auto px-4 pt-4"><a href="index.html" class="flex items-center gap-2 font-extrabold text-lg"><span class="tile w-8 h-8 grid place-items-center">L</span>LetterLoom</a></header><main class="max-w-3xl mx-auto px-4 pb-20 pg"><h1 class="text-3xl font-extrabold mt-6 leading-tight">{h1}</h1>{body}{foot}</main></body></html>');out.append((f,title))
 ch=lambda ws:''.join(f'<span class="chip m-1">{w}<sub>{pt(w)}</sub></span>' for w in ws)
 def grp(ws):
     h=''
@@ -61,8 +63,8 @@ cat={}
 for f,t in out:cat.setdefault(('Unscramble' if f.startswith('unscr') else 'Words starting with' if f.startswith('words-') else 'Letter-length lists' if f[0].isdigit() else ''),[]).append((f,t))
 hub=''.join(f'<h2>{k}</h2><div>'+''.join(f'<a class="chip m-1" href="{f}">{t.split(":")[0].replace("Words That Start With","Starts with")}</a>' for f,t in v)+'</div>' for k,v in cat.items())
 page('word-lists.html','Word Lists: Words by Length, Start and End','Browse word lists by length, first letter and last letter, plus unscramble pages for popular words, with Scrabble points.','Word Lists',f'<p>Browse word lists with Scrabble points, or <a href="index.html">unscramble your own letters</a>.</p>{hub}')
-ex={'404.html'};urls=[f for f in sorted(os.listdir('.')) if f.endswith('.html') and f not in ex and not f.startswith('google')]
+ex={'404.html'};urls=[f for f in sorted(os.listdir('.')) if f.endswith('.html') and f not in ex and not f.startswith('google') and not gen(f)]
 d=datetime.date.today().isoformat()
 open('sitemap.xml','w').write('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join(f'<url><loc>{B}{"" if f=="index.html" else f}</loc><lastmod>{d}</lastmod></url>' for f in urls)+'</urlset>')
 open('robots.txt','w').write(f'User-agent: *\nAllow: /\nSitemap: {B}sitemap.xml\n')
-print(len(out),'pages;',len(urls),'in sitemap')
+print(len(out),'pages generated;',sum(1 for f,t in out if gen(f)),'set to noindex;',len(urls),'in sitemap')
